@@ -1,15 +1,13 @@
 <head>
-  map
+  <title>reactive-maps-example</title>
 </head>
+
 <body>
-  {{>map}}
+  {{> map}}
 </body>
+
 <template name="map">
-    <div class="map-container">
-      {{#unless geolocationError}}
-      {{> googleMap name="map" options=mapOptions}}
-      {{else}}
-      Geolocation failer: {{geolocationError}}
-      {{/unless}}
-    </div>
+  <div class="map-container">
+    {{> googleMap name="map" options=mapOptions}}
+  </div>
 </template>

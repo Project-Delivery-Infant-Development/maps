@@ -1,0 +1,3 @@
+Run this first
+meteor add dburles:google-maps
+meteor add dburles:google-maps mdg:geolocation
