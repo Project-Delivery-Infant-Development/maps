@@ -3,6 +3,8 @@ Markers = new Mongo.Collection('markers');
 if (Meteor.isClient) {
   Template.map.onCreated(function() {
     GoogleMaps.ready('map', function(map) {
+		
+		//remove this to remove the functionality to add markers on click
       google.maps.event.addListener(map.instance, 'click', function(event) {
         Markers.insert({ lat: event.latLng.lat(), lng: event.latLng.lng() });
       });
@@ -12,6 +14,7 @@ if (Meteor.isClient) {
       Markers.find().observe({
         added: function (document) {
           var marker = new google.maps.Marker({
+		  //make draggable false to remove the functionality to drag markers
             draggable: true,
             animation: google.maps.Animation.DROP,
             position: new google.maps.LatLng(document.lat, document.lng),
@@ -19,6 +22,7 @@ if (Meteor.isClient) {
             id: document._id
           });
 
+		  //remove this to remove the functionality to drag markers
           google.maps.event.addListener(marker, 'dragend', function(event) {
             Markers.update(marker.id, { $set: { lat: event.latLng.lat(), lng: event.latLng.lng() }});
           });
